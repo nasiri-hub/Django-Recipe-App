@@ -1,13 +1,12 @@
 #!/bin/bash
 
 # Apply database makemigrations
-# echo "Apply database makemigrations"
-# python3 manage.py makemigrations core
-# python3 manage.py migrate core
+echo "Apply database makemigrations"
+python3 manage.py makemigrations 
 
-# # Apply database migrations
-# echo "Apply database migrations"
-# python3 manage.py migrate 
+# Apply database migrations
+echo "Apply database migrations"
+python3 manage.py migrate 
 
 # Start server
 echo "Starting server"
