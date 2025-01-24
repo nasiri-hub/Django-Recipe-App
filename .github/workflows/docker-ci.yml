@@ -3,6 +3,8 @@ name: Docker CI
 on:
   push:
     branches: [ "main" ]
+    paths: 
+      - ".github/workflows/docker-ci.yml"
   pull_request:
     branches: [ "main" ]
 
