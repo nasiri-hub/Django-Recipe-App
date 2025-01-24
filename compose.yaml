@@ -9,6 +9,15 @@ services:
       - 8000:8000
     volumes:
       - .:/app
+    develop:
+      watch:
+        - action: rebuild
+          path: .
+          target: /app
+        - action: rebuild
+          path: ./uv.lock
+        - action: rebuild
+          path: ./pyproject.toml
 
 
 #     depends_on:
