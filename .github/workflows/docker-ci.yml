@@ -24,6 +24,10 @@ jobs:
           
     - name: Test with pytest
       run: docker compose run --remove-orphans api pytest
+      env:
+        SQL_DATABASE: ${{ secrets.SQL_DATABASE }}
+        SQL_USER: ${{ secrets.SQL_USER }}
+        SQL_PORT: ${{ secrets.SQL_PORT }}
 
     - name: Lint with ruff
       run: docker compose run --remove-orphans api ruff check
