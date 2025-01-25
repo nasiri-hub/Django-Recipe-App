@@ -23,12 +23,12 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           
     - name: Test with pytest
-      run: docker compose run --remove-orphans api pytest
+      run: docker compose run -e .env --rm api pytest
 
     - name: Lint with ruff
-      run: docker compose run --remove-orphans api ruff check
+      run: docker compose run -e .env --rm api ruff check
 
     - name: Check code formatting with Ruff
-      run: docker compose run --remove-orphans api ruff format
+      run: docker compose run -e .env --rm api ruff format
 
       continue-on-error: true

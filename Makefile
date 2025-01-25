@@ -11,16 +11,16 @@ down-v:
 	docker compose -f compose.yaml down -v
 
 makemigrations:
-	docker compose -f compose.yaml run --remove-orphans api python3 manage.py makemigrations
+	docker compose -f compose.yaml run --rm api python3 manage.py makemigrations
 
 migrate:
-	docker compose -f compose.yaml run --remove-orphans api python3 manage.py migrate
+	docker compose -f compose.yaml run --rm api python3 manage.py migrate
 
 collectstatic:
-	docker compose -f compose.yaml run --remove-orphans api python3 manage.py collectstatic --no-input
+	docker compose -f compose.yaml run --rm api python3 manage.py collectstatic --no-input
 
 superuser:
-	docker compose -f compose.yaml run --remove-orphans api python3 manage.py createsuperuser 
+	docker compose -f compose.yaml run --rm api python3 manage.py createsuperuser 
 
 logs:
 	docker compose logs
