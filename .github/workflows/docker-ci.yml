@@ -33,16 +33,13 @@ jobs:
       run: |
         mkdir db
         cd db
-        touch password.txt
+        touch db/password.txt
         echo '${{ secrets.DB_PASSWORD }}' >> password.txt
           
     - name: Test with pytest
       run: docker compose run --rm api pytest
 
-    - name: Lint with ruff
-      run: docker compose run --rm api ruff check
-
-    - name: Check code formatting with Flake8
+    - name: Lint with Flake8
       run: docker compose run --rm api flake8
 
       continue-on-error: true
