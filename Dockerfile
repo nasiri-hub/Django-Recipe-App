@@ -23,7 +23,11 @@ RUN adduser \
     --ingroup app \
     app
 
-RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates
+RUN apt-get update  \
+    && apt-get install -y --no-install-recommends \
+    build-essential curl ca-certificates python3-venv libpq5\
+    && apt clean \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN python -m pip install --upgrade pip
 RUN pip install "uv"

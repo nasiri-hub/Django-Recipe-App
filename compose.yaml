@@ -4,9 +4,14 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    command: ./entrypoint.sh
+    env_file:
+      - ./.env
+    command: ./wait-for-it.sh db:5432 -- ./entrypoint.sh
     ports:
       - 8000:8000
+    depends_on:
+      db:
+        condition: service_healthy
     volumes:
       - .:/app
     develop:
@@ -18,32 +23,34 @@ services:
           path: ./uv.lock
         - action: rebuild
           path: ./pyproject.toml
-
-
-#     depends_on:
-#       db:
-#         condition: service_healthy
-#   db:
-#     image: postgres
-#     restart: always
-#     user: postgres
-#     secrets:
-#       - db-password
-#     volumes:
-#       - db-data:/var/lib/postgresql/data
-#     environment:
-#       - POSTGRES_DB=example
-#       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
-#     expose:
-#       - 5432
-#     healthcheck:
-#       test: [ "CMD", "pg_isready" ]
-#       interval: 10s
-#       timeout: 5s
-#       retries: 5
-# volumes:
-#   db-data:
-# secrets:
-#   db-password:
-#     file: db/password.txt
+    
+  db:
+    image: postgres
+    restart: always
+    env_file:
+      - ./.env
+    user: postgres
+    secrets:
+      - db-password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${SQL_DATABASE}
+      - POSTGRES_USER=${SQL_USER}
+      - POSTGRES_PORT=${SQL_PORT}
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+    expose:
+      - 5432
+    ports:
+      - 5432:5432
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  db-data:
+secrets:
+  db-password:
+    file: db/password.txt
 
