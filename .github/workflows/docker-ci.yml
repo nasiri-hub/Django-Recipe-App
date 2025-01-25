@@ -8,14 +8,6 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
-env:
-  SQL_ENGINE: SQL_ENGINE
-  SQL_DATABASE: SQL_DATABASE
-  SQL_USER: SQL_USER
-  SQL_PASSWORD: SQL_PASSWORD
-  SQL_HOST: SQL_HOST
-  SQL_PORT: SQL_PORT
-
 jobs:
 
   test-lint:
@@ -31,7 +23,11 @@ jobs:
       with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-
+    
+    - name: Create .env file
+      run: |
+        touch .env
+        echo '${{ secrets.SECRETS }}' >> .env
           
     - name: Test with pytest
       run: docker compose run --rm api pytest
