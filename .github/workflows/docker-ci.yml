@@ -32,7 +32,7 @@ jobs:
     - name: Create db/password file
       run: |
         touch password.txt
-        echo '${{ secrets.DB_PASSWORD }}' >> password.txt
+        echo '${{ secrets.DB_PASSWORD }}' >> /db/password.txt
           
     - name: Test with pytest
       run: docker compose run --rm api pytest
