@@ -33,7 +33,7 @@ jobs:
       run: |
         mkdir db
         cd db
-        touch db/password.txt
+        touch password.txt
         echo '${{ secrets.DB_PASSWORD }}' >> password.txt
           
     - name: Test with pytest
