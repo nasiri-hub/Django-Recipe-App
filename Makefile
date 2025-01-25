@@ -1,26 +1,26 @@
 build:
-	docker compose -f compose.yaml up --build -d --rm
+	docker compose up --build -d --remove-orphans
 
 up:
-	docker compose -f compose.yaml up -d
+	docker compose up -d --remove-orphans
 
 down:
-	docker compose -f compose.yaml down
+	docker compose down
 
 down-v:
-	docker compose -f compose.yaml down -v
+	docker compose down -v
 
 makemigrations:
-	docker compose -f compose.yaml run --rm api python3 manage.py makemigrations
+	docker compose run --rm api python3 manage.py makemigrations
 
 migrate:
-	docker compose -f compose.yaml run --rm api python3 manage.py migrate
+	docker compose run --rm api python3 manage.py migrate
 
 collectstatic:
-	docker compose -f compose.yaml run --rm api python3 manage.py collectstatic --no-input
+	docker compose run --rm api python3 manage.py collectstatic --no-input
 
 superuser:
-	docker compose -f compose.yaml run --rm api python3 manage.py createsuperuser 
+	docker compose run --rm api python3 manage.py createsuperuser 
 
 logs:
 	docker compose logs

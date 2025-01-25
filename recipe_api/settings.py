@@ -1,3 +1,4 @@
+from datetime import timedelta
 import os
 from pathlib import Path
 
@@ -21,6 +22,7 @@ INSTALLED_APPS = [
     'djoser',
     'rest_framework',
     'drf_spectacular',
+    'recipe',
     'tags',
     'core'
 ]
@@ -106,7 +108,15 @@ AUTH_USER_MODEL = 'core.User'
 
 
 REST_FRAMEWORK = {
+    'COERCE_DECIMAL_TO_STRING': False,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',),
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('JWT',),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1)
 }
 
 SPECTACULAR_SETTINGS = {
