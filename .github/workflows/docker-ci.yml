@@ -22,8 +22,14 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           
-    # - name: Test with pytest
-    #   run: docker compose -f compose.yaml run --rm api pytest
+    - name: Test with pytest
+      run: docker compose run --rm api pytest
+      env:
+        POSTGRES_DB_NAME: ${{ secrets.SQL_DATABASE }}
+        POSTGRES_USER: ${{ secrets.SQL_USER }}
+        POSTGRES_PASSWORD: ${{ secrets.SQL_PASSWORD }}
+        POSTGRES_HOST: ${{ secrets.SQL_HOST }}
+        POSTGRES_PORT: ${{ secrets.SQL_PORT }}
 
     - name: Lint with ruff
       run: docker compose run --rm api ruff check
