@@ -31,7 +31,9 @@ jobs:
     
     - name: Create db/password file
       run: |
-        touch /db/password.txt
+        mkdir db
+        cd db
+        touch password.txt
         echo '${{ secrets.DB_PASSWORD }}' >> password.txt
           
     - name: Test with pytest
