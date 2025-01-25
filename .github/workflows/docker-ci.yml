@@ -28,6 +28,11 @@ jobs:
       run: |
         touch .env
         echo '${{ secrets.SECRETS }}' >> .env
+    
+    - name: Create db/password file
+      run: |
+        touch password.txt
+        echo '${{ secrets.DB_PASSWORD }}' >> password.txt
           
     - name: Test with pytest
       run: docker compose run --rm api pytest
