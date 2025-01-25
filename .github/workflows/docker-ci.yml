@@ -24,11 +24,6 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Load .env file
-      uses: aarcangeli/load-dotenv@v1
-      with:
-        path: '..'
-        filenames: '.env'
           
     - name: Test with pytest
       run: docker compose run --rm api pytest
