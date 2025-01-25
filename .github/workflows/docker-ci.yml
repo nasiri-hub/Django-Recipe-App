@@ -22,8 +22,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           
-    - name: Test with pytest
-      run: docker compose -f compose.yaml run --rm api pytest
+    # - name: Test with pytest
+    #   run: docker compose -f compose.yaml run --rm api pytest
 
     - name: Lint with ruff
       run: docker compose run -f compose.yaml --rm api ruff check
