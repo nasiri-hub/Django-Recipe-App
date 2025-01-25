@@ -8,6 +8,14 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+env:
+  SQL_ENGINE: SQL_ENGINE
+  SQL_DATABASE: SQL_DATABASE
+  SQL_USER: SQL_USER
+  SQL_PASSWORD: SQL_PASSWORD
+  SQL_HOST: SQL_HOST
+  SQL_PORT: SQL_PORT
+
 jobs:
 
   test-lint:
