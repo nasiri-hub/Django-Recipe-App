@@ -2,14 +2,8 @@ from datetime import timedelta
 import os
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
-
-DEBUG = True
-
-ALLOWED_HOSTS = ['0.0.0.0',
-                 '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -19,6 +13,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'corsheaders',
     'rest_framework',
     'djoser',
     'drf_spectacular',
@@ -28,10 +23,11 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -40,6 +36,11 @@ MIDDLEWARE = [
 ]
 INTERNAL_IPS = [
     '127.0.0.1',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:8001',
+    'http://127.0.01:8001'
 ]
 
 ROOT_URLCONF = 'recipe_api.urls'
@@ -61,17 +62,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'recipe_api.wsgi.application'
-
-DATABASES = {
-    'default': {
-        'ENGINE': os.environ['SQL_ENGINE'],
-        'NAME': os.environ['SQL_DATABASE'],
-        'USER': os.environ['SQL_USER'],
-        'PASSWORD': os.environ['SQL_PASSWORD'],
-        'HOST': os.environ['SQL_HOST'],
-        'PORT': os.environ['SQL_PORT'],
-    }
-}
 
 
 AUTH_PASSWORD_VALIDATORS = [
