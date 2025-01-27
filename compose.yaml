@@ -48,9 +48,25 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  nginx:
+    build: 
+      context: ./nginx
+      dockerfile: ./Dockerfile
+    volumes:
+      - static:/static
+      - media:/media
+    ports:
+      - 80:80
+    depends_on:
+      - api
+
 volumes:
   db-data:
+  static:
+  media:
 secrets:
   db-password:
     file: db/password.txt
 
+  
