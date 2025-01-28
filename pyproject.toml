@@ -24,7 +24,7 @@ dependencies = [
     "drf-spectacular>=0.28.0",
     "flake8>=7.1.1",
     "gunicorn>=23.0.0",
-    "django-cors-headers>=4.6.0"
+    "django-cors-headers>=4.6.0",
     "whitenoise>=6.8.2"
 ]
 

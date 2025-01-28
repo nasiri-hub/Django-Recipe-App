@@ -3,12 +3,17 @@ from django.db import models
 from django.conf import settings
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
 class Recipe(models.Model):
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=250)
     description = models.TextField(blank=True, null=True)
     time = models.DateTimeField(auto_now=False, auto_now_add=True)
     price = models.DecimalField(max_digits=5, decimal_places=2)
     link = models.CharField(max_length=250, blank=True)
+    instructions = models.TextField()
     ingredient = models.ManyToManyField('Ingredient')
 
     def __str__(self):

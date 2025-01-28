@@ -14,6 +14,8 @@ services:
         condition: service_healthy
     volumes:
       - .:/app
+      - static_volume:/app/static
+      - media_volume:/app/media
     develop:
       watch:
         - action: rebuild
@@ -54,8 +56,8 @@ services:
       context: ./nginx
       dockerfile: ./Dockerfile
     volumes:
-      - static:/static
-      - media:/media
+      - static_volume:/app/static
+      - media_volume:/app/media
     ports:
       - 80:80
     depends_on:
@@ -63,8 +65,8 @@ services:
 
 volumes:
   db-data:
-  static:
-  media:
+  static_volume:
+  media_volume:
 secrets:
   db-password:
     file: db/password.txt
