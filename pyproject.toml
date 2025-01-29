@@ -25,7 +25,8 @@ dependencies = [
     "flake8>=7.1.1",
     "gunicorn>=23.0.0",
     "django-cors-headers>=4.6.0",
-    "whitenoise>=6.8.2"
+    "whitenoise>=6.8.2",
+    "django-csp>=3.8",
 ]
 
 [dependency-groups]
@@ -33,4 +34,5 @@ dev = [
     "pytest>=8.3.4",
     "pytest-django>=4.9.0",
     "pytest-watch>=4.2.0",
+    
 ]

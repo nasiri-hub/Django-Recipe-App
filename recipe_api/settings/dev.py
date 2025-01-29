@@ -3,7 +3,7 @@ import os
 
 ALLOWED_HOSTS = ['0.0.0.0']
 
-DEBUG = True
+DEBUG = False
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 

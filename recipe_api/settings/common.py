@@ -1,3 +1,4 @@
+from django.conf import settings
 from datetime import timedelta
 import os
 from pathlib import Path
@@ -34,6 +35,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
