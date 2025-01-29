@@ -5,5 +5,5 @@ from ..models import Customer
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_user_profile(sender, **kwargs):
-    if kwargs['instance']:
+    if kwargs['created']:
         Customer.objects.create(user=kwargs['instance'])

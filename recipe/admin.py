@@ -10,13 +10,13 @@ class CategoryAdmin(admin.ModelAdmin):
 class RecipeAdmin(admin.ModelAdmin):
     autocomplete_fields = ['category']
 
-    list_display = ['name', 'description',
+    list_display = ['title', 'description',
                     'time', 'price', 'link', 'instructions']
     list_editable = ['price']
     list_per_page = 10
     list_select_related = ['category']
     date_hierarchy = 'time'
-    ordering = ['name']
+    ordering = ['title']
 
     class Media:
         css = {
@@ -26,7 +26,7 @@ class RecipeAdmin(admin.ModelAdmin):
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name', 'membership', 'orders']
+    list_display = ['first_name', 'last_name', 'membership']
     list_editable = ['membership']
     list_per_page = 10
     ordering = ['user__first_name', 'user__last_name']
