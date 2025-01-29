@@ -23,14 +23,17 @@ RUN adduser \
     --ingroup app \
     app
 
-RUN apt-get update  \
-    && apt-get install -y --no-install-recommends \
-    build-essential curl ca-certificates python3-venv libpq5\
+RUN apt update  \
+    && apt full-upgrade -y\
+    && apt install -y --no-install-recommends \
+    build-essential curl ca-certificates python3-venv \
+    libpq5\
+    python3-certbot-nginx\
+    certbot\
     && apt clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN python -m pip install --upgrade pip
-RUN pip install "uv"
+COPY --from=ghcr.io/astral-sh/uv:0.5.25 /uv /uvx /bin/
 
 COPY --chown=app:app pyproject.toml /app/
 
