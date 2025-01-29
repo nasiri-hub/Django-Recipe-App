@@ -1,4 +1,4 @@
-from django.conf import settings
+
 from datetime import timedelta
 import os
 from pathlib import Path
@@ -42,8 +42,7 @@ INTERNAL_IPS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:8001',
-    'http://127.0.01:8001'
+    'http://0.0.0.0:8001',
 ]
 
 ROOT_URLCONF = 'recipe_api.urls'
