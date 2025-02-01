@@ -1,7 +1,7 @@
 from .common import *
 import os
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
 
 DEBUG = os.environ.get('DEBUG')
 
