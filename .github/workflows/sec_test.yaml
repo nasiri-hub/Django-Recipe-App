@@ -53,16 +53,15 @@ jobs:
           with:
               username: ${{ secrets.DOCKER_USERNAME }}
               password: ${{ secrets.DOCKER_PASSWORD }}
-    
-
 
         - name: Build Docker image
           run : docker build -f Dockerfile -t recipe:v.1 .
 
         - name: Docker Scout Scan
-          run: | 
-            curl -fsSL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh -o install-scout.sh 
-            sh install-scout.sh
-            docker scout quickview
-            docker scout cves
+          uses: docker/scout-action@v1.16.1
+          with:
+            command: quickview, cves
+
+
+
 
