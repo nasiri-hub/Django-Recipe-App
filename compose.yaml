@@ -27,7 +27,7 @@ services:
           path: ./pyproject.toml
     
   db:
-    image: postgres
+    image: postgres:17.2
     restart: always
     env_file:
       - ./.env
