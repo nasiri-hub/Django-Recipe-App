@@ -20,7 +20,6 @@ dependencies = [
     "psycopg[binary,pool]",
     "redis>=5.2.1",
     "pytest>=8.3.4",
-    "argon2-cffi>=23.1.0",
     "drf-spectacular>=0.28.0",
     "flake8>=7.1.1",
     "gunicorn>=23.0.0",
