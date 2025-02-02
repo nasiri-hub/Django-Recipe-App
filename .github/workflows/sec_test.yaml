@@ -67,6 +67,7 @@ jobs:
             command: quickview, cves
             only-severities: critical, high, medium
             sarif-file: scout_report.sarif
+            exit-code: true
 
 
         - name: Upload Artifact
@@ -75,4 +76,3 @@ jobs:
           with:
             name: docker-scout-findings
             path: scout_report.sarif
-
