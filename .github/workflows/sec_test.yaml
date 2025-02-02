@@ -1,4 +1,7 @@
 name: Security test
+permissions:
+  contents: read
+  pull-requests: write
 
 on: [push]
 
@@ -45,11 +48,12 @@ jobs:
           uses: actions/checkout@v4
 
         - name: Set up Docker
-          uses: docker/setup-docker-action@v4.1.0
+          uses: docker/setup-docker-action@370a7dad4b8ce8dbf00f9363e1652e5074dd6abe # v4.1.0
           with:
             version: 27.4.0
+
         - name: Login to Docker Hub
-          uses: docker/login-action@v3.3.0
+          uses: docker/login-action@9780b0c442fbb1117ed29e0efdff1e18412f7567 # v3.3.0
           with:
               username: ${{ secrets.DOCKER_USERNAME }}
               password: ${{ secrets.DOCKER_PASSWORD }}
@@ -58,7 +62,7 @@ jobs:
           run : docker build -f Dockerfile -t recipe:v.1 .
 
         - name: Docker Scout Scan
-          uses: docker/scout-action@v1.16.1
+          uses: docker/scout-action@b23590dc1e4d09febc00cfcbc51e9e8c0f7ee9f3
           with:
             command: quickview, cves
 
