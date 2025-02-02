@@ -65,7 +65,14 @@ jobs:
           uses: docker/scout-action@b23590dc1e4d09febc00cfcbc51e9e8c0f7ee9f3
           with:
             command: quickview, cves
+            only-severities: critical, high, medium
+            sarif-file: scout_report.sarif
 
 
-
+        - name: Upload Artifact
+          uses: actions/upload-artifact@v4
+          if: always() 
+          with:
+            name: docker-scout-findings
+            path: scout_report.sarif
 
