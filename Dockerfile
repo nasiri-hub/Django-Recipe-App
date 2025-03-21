@@ -17,19 +17,15 @@ RUN addgroup \
 ARG UID=10001
 RUN adduser \
     --system \
-    --home "/home/app" \
-    --shell "/bin/bash" \
     --uid "${UID}" \
     --ingroup app \
     app
 
-RUN apt update  \
-    && apt full-upgrade -y\
+RUN apt update \
+    && apt upgrade -y \
     && apt install -y --no-install-recommends \
     build-essential curl ca-certificates python3-venv \
-    libpq5\
-    python3-certbot-nginx\
-    certbot\
+    libpq5 \
     && apt clean \
     && rm -rf /var/lib/apt/lists/*
 
